@@ -1,6 +1,9 @@
 print("esto es una prueba")
 
-##se me hizo tarde preguntarte tu me quieres :(
+
+##crear un entorno virtual evnv
+##instalar dependencias
+##pip install streamlit__ en la terminal del proyecto
 
 
 
