@@ -1,5 +1,7 @@
-
+import streamlit as st
 print("esto es una prueba")
+
+st.title("hola")
 
 
 ##crear un entorno virtual evnv
