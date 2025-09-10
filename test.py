@@ -1,5 +1,5 @@
 import streamlit as st
-print("esto es una prueba")
+##print("esto es una prueba")
 
 st.set_page_config(page_title="UIEPCH", page_icon="📄")
 st.title('Hola Estudiante')
