@@ -4,7 +4,7 @@ from PIL import Image
 
 st.set_page_config(page_title="UIEPCh", page_icon="🤖")
 st.title('¡Hola Estudiante! 🐔')
-st.text("Soy el asistente vitual oficial de la UICh, respondere a cualquier duda que tengas con respecto a la universidad ¿En que puedo ayudarte?  :)")
+st.text("Soy el asistente virtual oficial de la UICh, responderé a cualquier duda que tengas con respecto a la universidad ¿En qué puedo ayudarte? :)")
 
 chat_placeholder = st.container()
 prompt_placeholder = st.form("chat-form")
