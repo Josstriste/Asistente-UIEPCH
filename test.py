@@ -24,9 +24,10 @@ with prompt_placeholder:
 
 
 
-##crear un entorno virtual evnv
+##crear un entorno virtual venv
 ##instalar dependencias
-##pip install streamlit__ en la terminal del proyecto
+##pip install streamlit en la terminal del proyecto
+##
 
 
 
