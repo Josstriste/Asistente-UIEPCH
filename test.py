@@ -28,7 +28,7 @@ with prompt_placeholder:
 ##ocultar el entorno en el gitignore
 ##instalar dependencias
 ##pip install streamlit en la terminal del proyecto
-##
+##insertar css incrustado
 
 
 
