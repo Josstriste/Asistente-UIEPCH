@@ -25,6 +25,7 @@ with prompt_placeholder:
 
 
 ##crear un entorno virtual venv
+##ocultar el entorno en el gitignore
 ##instalar dependencias
 ##pip install streamlit en la terminal del proyecto
 ##
