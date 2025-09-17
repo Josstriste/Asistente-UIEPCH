@@ -20,8 +20,7 @@ with st.sidebar:
 # Titulos y texto explicativo
 st.set_page_config(page_title="UIEPCh", page_icon="🤖")
 st.markdown("<h1 style='text-align: center; font-size: 4em;'>Hola, estudiante</h1>", unsafe_allow_html=True)
-st.text("Soy el asistente virtual oficial de la UICh, responderé a " \
-"cualquier duda que tengas con respecto a la universidad ¿En qué puedo ayudarte? :)")
+st.text("Soy el asistente virtual oficial de la UICh, en que puedo ayudarte :D")
 
 # Area del prompt
 chat_placeholder = st.container()
