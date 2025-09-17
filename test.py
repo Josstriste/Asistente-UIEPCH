@@ -9,7 +9,13 @@ logouich = Image.open("images/v2Logo.png")
 
 with st.sidebar:
     st.image(logouich)
-    st.markdown("<h1 style='text-align: center;'>Hola, estudiante</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>Instrucciones:</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center;'>Dentro del recuadro oscuro"
+    " escribe una pregunta con respecto a la universidad como cuales son los papeles necesarios"
+    " para inscribirse, precios de cuotas, etc.</p>", unsafe_allow_html=True)
+    st.empty()
+    st.empty()
+    st.markdown("<p style='text-align: center;'>@UICh 2025 Copyright</p>", unsafe_allow_html=True)
 
 # Titulos y texto explicativo
 st.set_page_config(page_title="UIEPCh", page_icon="🤖")
