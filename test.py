@@ -24,7 +24,6 @@ st.text("Soy el asistente virtual oficial de la UICh, responderé a " \
 "cualquier duda que tengas con respecto a la universidad ¿En qué puedo ayudarte? :)")
 
 # Area del prompt
-
 chat_placeholder = st.container()
 prompt_placeholder = st.form("chat-form")
 
