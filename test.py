@@ -1,10 +1,23 @@
+# Se Importaron las librerias que se van a usar
 import streamlit as st
 from PIL import Image
-##print("esto es una prueba")
 
+# diseño de la interfaz
+
+# creacion del sidebar
+logouich = Image.open("images/v2Logo.png")
+
+with st.sidebar:
+    st.image(logouich)
+    st.markdown("<h1 style='text-align: center;'>Hola, estudiante</h1>", unsafe_allow_html=True)
+
+# Titulos y texto explicativo
 st.set_page_config(page_title="UIEPCh", page_icon="🤖")
-st.title('¡Hola Estudiante! 🐔')
-st.text("Soy el asistente virtual oficial de la UICh, responderé a cualquier duda que tengas con respecto a la universidad ¿En qué puedo ayudarte? :)")
+st.markdown("<h1 style='text-align: center; font-size: 4em;'>Hola, estudiante</h1>", unsafe_allow_html=True)
+st.text("Soy el asistente virtual oficial de la UICh, responderé a " \
+"cualquier duda que tengas con respecto a la universidad ¿En qué puedo ayudarte? :)")
+
+# Area del prompt
 
 chat_placeholder = st.container()
 prompt_placeholder = st.form("chat-form")
@@ -14,7 +27,7 @@ with prompt_placeholder:
     cols = st.columns((6, 1))
     cols[0].text_input(
         "Chat",
-        value="Hola",
+        placeholder="Pregunta a UIChito",
         label_visibility="collapsed",
     )
     cols[1].form_submit_button(
@@ -23,14 +36,6 @@ with prompt_placeholder:
     )
 
 
-####TEST interfaz
-
-
-##crear un entorno virtual venv
-##ocultar el entorno en el gitignore
-##instalar dependencias
-##pip install streamlit en la terminal del proyecto
-##insertar css incrustado
 
 
 
