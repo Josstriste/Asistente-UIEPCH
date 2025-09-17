@@ -40,6 +40,3 @@ with prompt_placeholder:
     )
 
 
-
-
-
