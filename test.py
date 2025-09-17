@@ -6,16 +6,16 @@ from PIL import Image
 
 # creacion del sidebar
 logouich = Image.open("images/v2Logo.png")
+halcon = Image.open("images/mascota sin fondo reflejo.png")
 
 with st.sidebar:
-    st.image(logouich)
-    st.markdown("<h1 style='text-align: center;'>Instrucciones:</h1>", unsafe_allow_html=True)
+    st.image(logouich, width= 300)
+    st.markdown("<h1 style='text-align: center; margin-top: 0; padding-top:0 '>Instrucciones:</h1>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: center;'>Dentro del recuadro oscuro"
     " escribe una pregunta con respecto a la universidad como cuales son los papeles necesarios"
     " para inscribirse, precios de cuotas, etc.</p>", unsafe_allow_html=True)
-    st.empty()
-    st.empty()
-    st.markdown("<p style='text-align: center;'>@UICh 2025 Copyright</p>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; font-style: italic; font-size: 0.8em; padding-top: 20px; margin-bottom: 0; padding-bottom: 0;'>@UICh 2025 Copyright</p>", unsafe_allow_html=True)
+    st.image(halcon, width= 350)
 
 # Titulos y texto explicativo
 st.set_page_config(page_title="UIEPCh", page_icon="🤖")
