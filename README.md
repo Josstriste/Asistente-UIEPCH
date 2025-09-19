@@ -7,11 +7,12 @@ Este es un proyecto de titulación para la carrera de ingeniería en sistemas co
 </figure>
 <br />
 <br />
+# Requisitos previos :D
 Para poner utilizar este proyecto es necesario instalar las siguientes librerias:
 <br />
 <ul>
-  <li>```pip install streamlit```</li>
-  <li>```pip install openai```</li>
-  <li>```pip install chainlang```</li>
-  <li>```pip install embeddings```</li>
+  <li style="text-decoration: none;">```pip install streamlit```</li>
+  <li style="text-decoration: none;">```pip install openai```</li>
+  <li style="text-decoration: none;">```pip install chainlang```</li>
+  <li style="text-decoration: none;">```pip install embeddings```</li>
 </ul>
