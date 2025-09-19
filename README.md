@@ -9,7 +9,9 @@ Este es un proyecto de titulación para la carrera de ingeniería en sistemas co
 <br />
 Para poner utilizar este proyecto es necesario instalar las siguientes librerias:
 
-```pip install streamlit```
-```pip install openai```
-```pip install chainlang```
-```pip install embeddings```
+<ul>
+  <li>```pip install streamlit```</li>
+  <li>```pip install openai```</li>
+  <li>```pip install chainlang```</li>
+  <li>```pip install embeddings```</li>
+</ul>
