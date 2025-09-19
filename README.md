@@ -8,7 +8,7 @@ Este es un proyecto de titulación para la carrera de ingeniería en sistemas co
 <br />
 <br />
 Para poner utilizar este proyecto es necesario instalar las siguientes librerias:
-
+<br />
 <ul>
   <li>```pip install streamlit```</li>
   <li>```pip install openai```</li>
