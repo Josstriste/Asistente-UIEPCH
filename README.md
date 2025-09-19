@@ -26,5 +26,6 @@ Para poner utilizar este proyecto es necesario instalar las siguientes librerias
   <li>pip install embeddings</li>
 </ul>
 
-Una vez configurado el entorno se necesitara la creacion de la API de openAI. Esta se crea directamente desde la pagina oficial en donde debes crear un nuevo proyecto y seleccionar la opcion de **create new secret key** y automaticamente se creara una. **No debes compartir esta pues podrian hacer mal uso de ella.**
+Una vez configurado el entorno se necesitara la creacion de la API de openAI. Esta se crea directamente desde la pagina oficial en donde debes
+dirigirte a la opcion de ajustes. Una vez alli buscar la opcion de **"API keys"** y seleccionar la opcion de **"create new secret key"** y automaticamente se creara una. **No debes compartir esta pues podrian hacer mal uso de ella.**
 Puedes ingresar a la pagina con el siguiente link [OpenAI](https://platform.openai.com/docs/overview)
