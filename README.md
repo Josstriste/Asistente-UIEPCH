@@ -7,7 +7,9 @@ Este es un proyecto de titulación para la carrera de ingeniería en sistemas co
   <img width="1909" height="923" alt="Image" src="https://github.com/user-attachments/assets/c0b7394e-9551-413a-b035-14746d2c4527" />
 </figure>
 <br />
+<br />
 
+## Version mobile 
 <p align="center" width="100%">
   <img  width="350" height="700" alt="Image" src ="https://github.com/user-attachments/assets/9e2f5d62-a8df-46ea-82a1-43233553c30e" />
 </p>
