@@ -4,11 +4,9 @@ Este es un proyecto de titulación para la carrera de ingeniería en sistemas co
 <br />
 <figure>
   <img width="1909" height="923" alt="Image" src="https://github.com/user-attachments/assets/c0b7394e-9551-413a-b035-14746d2c4527" />
-  <figcaption>
-    vista previa del chatbot :D
-  </figcaption>
 </figure>
-
+<br />
+<br />
 Para poner utilizar este proyecto es necesario instalar las siguientes librerias:
 
 ```pip install streamlit```
