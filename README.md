@@ -7,7 +7,8 @@ Este es un proyecto de titulación para la carrera de ingeniería en sistemas co
   <img width="1909" height="923" alt="Image" src="https://github.com/user-attachments/assets/c0b7394e-9551-413a-b035-14746d2c4527" />
 </figure>
 <br />
-![Image](https://github.com/user-attachments/assets/afef20a5-6612-434d-bafa-830ff7de16f3)
+
+<img alt="Image" src ="https://github.com/user-attachments/assets/9e2f5d62-a8df-46ea-82a1-43233553c30e" />
 
 # Requisitos previos :D
 Debes de tener instalado dentro de tu equipo una version de python compatible con las librerias, yo recomiento la 3.11.9 para que no exista conflicto alguno.
