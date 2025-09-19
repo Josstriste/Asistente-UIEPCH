@@ -13,7 +13,9 @@ Debes de tener instalado dentro de tu equipo una version de python compatible co
 Despues en caso de tener mas proyectos que pudieran chocar con algunas dependencias ya instaladas se recomienda crear un entorno virtual para este, por ejemplo:
 <br />
 
-```python -m venv "nombre del entorno""```
+```shell
+python -m venv nombre del entorno
+```
 
 Para poner utilizar este proyecto es necesario instalar las siguientes librerias dentro de la terminal del proyecto :D, asegurandose que se encuentre dentro del entorno creado.
 <br />
@@ -23,3 +25,6 @@ Para poner utilizar este proyecto es necesario instalar las siguientes librerias
   <li>pip install langchain</li>
   <li>pip install embeddings</li>
 </ul>
+
+Una vez configurado el entorno se necesitara la creacion de la API de openAI. Esta se crea directamente desde la pagina oficial en donde debes crear un nuevo proyecto y seleccionar la opcion de **create new secret key** y automaticamente se creara una. **No debes compartir esta pues podrian hacer mal uso de ella.**
+Puedes ingresar a la pagina con el siguiente link [OpenAI](https://platform.openai.com/docs/overview)
