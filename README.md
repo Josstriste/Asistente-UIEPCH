@@ -23,7 +23,7 @@ Despues en caso de tener mas proyectos que pudieran chocar con algunas dependenc
 python -m venv nombre del entorno
 ```
 
-Para poner utilizar este proyecto es necesario instalar las siguientes librerias dentro de la terminal del proyecto :D, asegurandose que se encuentre dentro del entorno creado.
+Para poner utilizar este proyecto es necesario instalar las siguientes librerias dentro de la terminal del proyecto, asegurandose que se encuentre dentro del entorno creado.
 <br />
 <ul style="list-style-type: none;">
   <li>pip install streamlit</li>
