@@ -36,8 +36,14 @@ Una vez configurado el entorno se necesitara la creacion de la API de openAI. Es
 dirigirte a la opcion de ajustes. Una vez alli buscar la opcion de **"API keys"** y seleccionar la opcion de **"create new secret key"** y automaticamente se creara una. **No debes compartir esta pues podrian hacer mal uso de ella.** Puedes ingresar a la pagina con el siguiente link [OpenAI](https://platform.openai.com/docs/overview).
 <br />
 <br />
+<figure>
+  <img width="1749" height="871" alt="Image" src="https://github.com/user-attachments/assets/ecf26f50-5a4f-4ade-9927-71617cffc331" />
+</figure>
+<br />
+<br />
 Esto es solo para agregar la api despues deberan de agregar saldo a una cartera digital propia de OpenAI la cual sirve para hacer las llamadas a la API y que el LLM responda.
 Esta seccion se encuentra en el lado izquierdo en el apartado de **"Billing"**. Una vez dentro darle clic a la opcion de **"Add to credit balance"** y agregar un metodo de pago y el monto a depositar. Una vez hecho esto la API ya tendra funcionalidad y podra ser usada para contestar las preguntas que le sean puestas.
+<br />
 <br />
 <figure>
   <img width="1801" height="849" alt="Image" src="https://github.com/user-attachments/assets/05a686e2-d56e-4216-9755-dcdfb67ccd36" />
