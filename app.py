@@ -2,6 +2,19 @@
 import streamlit as st
 from PIL import Image
 
+#Creacion de la funcion sesion_state
+def initialize_session_state():
+    if "history" not in st.session_state:
+        st.session_state.history = []
+
+
+#Funcion de callback para los mensajes
+def on_click_callback():
+    human_prompt = st.session_state.human_prompt
+    st.session_state.history.append(human_prompt)
+
+initialize_session_state()
+
 # diseño de la interfaz
 
 # creacion del sidebar
@@ -26,6 +39,10 @@ st.text("Soy el asistente virtual oficial de la UICh, en que puedo ayudarte :D")
 chat_placeholder = st.container()
 prompt_placeholder = st.form("chat-form")
 
+with chat_placeholder:
+    for chat in st.session_state.history:
+        st.markdown(chat)
+
 with prompt_placeholder:
     st.markdown("**Chat**  -  _presiona Enter para enviar_")
     cols = st.columns((6, 1))
@@ -33,10 +50,12 @@ with prompt_placeholder:
         "Chat",
         placeholder="Pregunta a UIChito",
         label_visibility="collapsed",
+        key="human_prompt",
     )
     cols[1].form_submit_button(
         "Enviar", 
         type="primary",
+        on_click=on_click_callback, 
     )
 
 # logica 
