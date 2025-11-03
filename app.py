@@ -1,5 +1,10 @@
 # Se Importaron las librerias que se van a usar
+from dataclasses import dataclass
+from typing import Literal
 import streamlit as st
+
+from langchain import OpenAI
+
 from PIL import Image
 
 #Creacion de la funcion sesion_state
