@@ -3,3 +3,5 @@
 inde.html
 
 entornoStreamlit/
+
+.streamlit/secrets.toml
