@@ -40,7 +40,7 @@ def initialize_session_state():
 #Funcion de callback para los mensajes
 def on_click_callback():
     human_prompt = st.session_state.human_prompt
-    llm_response = st.session_state.conversation.run(
+    llm_response = st.session_state.conversation.run( 
         human_prompt
     )
     st.session_state.history.append(
