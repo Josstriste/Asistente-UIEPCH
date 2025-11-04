@@ -3,22 +3,56 @@ from dataclasses import dataclass
 from typing import Literal
 import streamlit as st
 
-from langchain import OpenAI
+from langchain_classic.callbacks import get_openai_callback
+from langchain_openai import ChatOpenAI
+from langchain_classic.chains.conversation.memory import ConversationSummaryMemory
+from langchain_classic.chains.conversation.base import ConversationChain
+#import streamlit.components.v1 as components
 
 from PIL import Image
+
+
+
+@dataclass
+class Message:
+    """Class for keeping track of a chat message."""
+    origin: Literal["human", "ai"]
+    message: str
+
 
 #Creacion de la funcion sesion_state
 def initialize_session_state():
     if "history" not in st.session_state:
         st.session_state.history = []
+    if "conversation" not in st.session_state:
+        chat_llm = ChatOpenAI(
+            temperature = 0,
+            openai_api_key = st.secrets["openai_api_key"],
+            model_name= "gpt-5-nano"
+        )
+
+        st.session_state.conversation = ConversationChain(
+            llm = chat_llm,
+            memory = ConversationSummaryMemory(llm = chat_llm),
+        )
 
 
 #Funcion de callback para los mensajes
 def on_click_callback():
     human_prompt = st.session_state.human_prompt
-    st.session_state.history.append(human_prompt)
+    llm_response = st.session_state.conversation.run(
+        human_prompt
+    )
+    st.session_state.history.append(
+        Message("human", human_prompt)
+    )
+    st.session_state.history.append(
+        Message("ai", llm_response)
+    )
 
 initialize_session_state()
+
+#########################################################################################################################
 
 # diseño de la interfaz
 
@@ -46,7 +80,7 @@ prompt_placeholder = st.form("chat-form")
 
 with chat_placeholder:
     for chat in st.session_state.history:
-        st.markdown(chat)
+        st.markdown(f"From {chat.origin}: {chat.message}")
 
 with prompt_placeholder:
     st.markdown("**Chat**  -  _presiona Enter para enviar_")
