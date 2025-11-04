@@ -12,7 +12,6 @@ from langchain_classic.chains.conversation.base import ConversationChain
 from PIL import Image
 
 
-
 @dataclass
 class Message:
     """Class for keeping track of a chat message."""
