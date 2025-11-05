@@ -21,7 +21,7 @@ class Message:
 
 #Creacion de la funcion sesion_state
 def initialize_session_state():
-    if "history" not in st.session_state:
+    if "history" not in st.session_state:   
         st.session_state.history = []
     if "conversation" not in st.session_state:
         chat_llm = ChatOpenAI(
