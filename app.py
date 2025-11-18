@@ -35,7 +35,6 @@ def initialize_session_state():
             memory = ConversationSummaryMemory(llm = chat_llm),
         )
 
-
 #Funcion de callback para los mensajes
 def on_click_callback():
     human_prompt = st.session_state.human_prompt
