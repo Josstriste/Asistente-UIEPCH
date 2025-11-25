@@ -3,6 +3,8 @@ from dataclasses import dataclass
 from typing import Literal
 import streamlit as st
 
+
+#from langchain_classic.memory import ConversationBufferWindowMemory
 from langchain_classic.callbacks import get_openai_callback
 from langchain_openai import ChatOpenAI
 from langchain_classic.chains.conversation.memory import ConversationSummaryMemory
@@ -18,11 +20,17 @@ class Message:
     origin: Literal["human", "ai"]
     message: str
 
+#probar
+def load_css():
+    with open("static/styles.css", "r") as f:
+        css = f"<style>{f.read()}</style>"
+        st.markdown(css, unsafe_allow_html=True)
+
 
 #Creacion de la funcion sesion_state
 def initialize_session_state():
     if "history" not in st.session_state:   
-        st.session_state.history = []
+        st.session_state.history = []  
     if "conversation" not in st.session_state:
         chat_llm = ChatOpenAI(
             temperature = 0,
@@ -47,7 +55,8 @@ def on_click_callback():
     st.session_state.history.append(
         Message("ai", llm_response)
     )
-
+#probar
+load_css()
 initialize_session_state()
 
 #########################################################################################################################
@@ -69,7 +78,7 @@ with st.sidebar:
 
 # Titulos y texto explicativo
 st.set_page_config(page_title="UIEPCh", page_icon="🤖")
-st.markdown("<h1 style='text-align: center; font-size: 4em;'>Hola, estudiante</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; font-size: 4em;'>Hola, Futuro halcón</h1>", unsafe_allow_html=True)
 st.text("Soy el asistente virtual oficial de la UICh, en que puedo ayudarte :D")
 
 # Area del prompt
@@ -77,8 +86,25 @@ chat_placeholder = st.container()
 prompt_placeholder = st.form("chat-form")
 
 with chat_placeholder:
+    ##probar
     for chat in st.session_state.history:
-        st.markdown(f"From {chat.origin}: {chat.message}")
+        div = f"""
+<div class="chat-row 
+    {'' if chat.origin == 'ai' else 'row-reverse'}">
+    <img class="chat-icon" src="app/static/{
+        'halcon (1).png' if chat.origin == 'ai' 
+                      else 'perfil.png'}"
+         width=32 height=32>
+    <div class="chat-bubble
+    {'ai-bubble' if chat.origin == 'ai' else 'human-bubble'}">
+        &#8203;{chat.message}
+    </div>
+</div>       
+        """
+        st.markdown(div, unsafe_allow_html=True)
+
+    for _ in range(3):
+        st.markdown("")
 
 with prompt_placeholder:
     st.markdown("**Chat**  -  _presiona Enter para enviar_")
@@ -95,7 +121,4 @@ with prompt_placeholder:
         on_click=on_click_callback, 
     )
 
-# logica 
-
-# callbacks
-
+#probar
