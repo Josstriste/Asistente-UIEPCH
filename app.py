@@ -5,13 +5,36 @@ import streamlit as st
 
 
 #from langchain_classic.memory import ConversationBufferWindowMemory
+from langchain_community.vectorstores import Chroma
 from langchain_classic.callbacks import get_openai_callback
-from langchain_openai import ChatOpenAI
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_classic.chains.conversation.memory import ConversationSummaryMemory
 from langchain_classic.chains.conversation.base import ConversationChain
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_community.document_loaders import PyPDFLoader
 #import streamlit.components.v1 as components
 
 from PIL import Image
+
+#carga de documentos
+@st.cache_resource
+def load_pdf():
+    pdf_name = 'descripcion_tesis.pdf'
+    loader = PyPDFLoader(pdf_name)
+    docs = loader.load() 
+
+#dividir texto en fragmentos
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size = 1000, chunk_overlap = 200) 
+    chunked_document = text_splitter.split_documents(docs)
+
+#creacion de la db
+    vectordb = Chroma.from_documents(
+        chunked_document, OpenAIEmbeddings(model="text-embedding-3-large", api_key= st.secrets["openai_api_key"])
+    )
+    return vectordb
+
+
+
 
 
 @dataclass
