@@ -1,88 +1,123 @@
-# Se Importaron las librerias que se van a usar
+# Librerias a usar
 from dataclasses import dataclass
 from typing import Literal
 import streamlit as st
+from PIL import Image
+import os
 
 
-#from langchain_classic.memory import ConversationBufferWindowMemory
+# Importaciones necesarias de langchain
+from langchain_classic.prompts import PromptTemplate
+from langchain_classic.memory import ConversationBufferWindowMemory
 from langchain_community.vectorstores import Chroma
-from langchain_classic.callbacks import get_openai_callback
+from langchain_classic.callbacks import get_openai_callback # sirve para conocer la cantidad de tokens que usa y el costo
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from langchain_classic.chains.conversation.memory import ConversationSummaryMemory
-from langchain_classic.chains.conversation.base import ConversationChain
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
-#import streamlit.components.v1 as components
+from langchain_classic.chains.conversational_retrieval.base import ConversationalRetrievalChain
 
-from PIL import Image
+# seteo de la pagina del titulo y el icono
+st.set_page_config(page_title="UIEPCh", page_icon="🤖")
 
-#carga de documentos
-@st.cache_resource
-def load_pdf():
-    pdf_name = 'descripcion_tesis.pdf'
-    loader = PyPDFLoader(pdf_name)
-    docs = loader.load() 
-
-#dividir texto en fragmentos
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size = 1000, chunk_overlap = 200) 
-    chunked_document = text_splitter.split_documents(docs)
-
-#creacion de la db
-    vectordb = Chroma.from_documents(
-        chunked_document, OpenAIEmbeddings(model="text-embedding-3-large", api_key= st.secrets["openai_api_key"])
-    )
-    return vectordb
-
-
-
-
-
+# clase de decorador para mostrar si el mensaje mandado fue ai o humano
 @dataclass
 class Message:
     """Class for keeping track of a chat message."""
     origin: Literal["human", "ai"]
     message: str
 
-#probar
+# funcion para los estilos incrustados con css
 def load_css():
     with open("static/styles.css", "r") as f:
         css = f"<style>{f.read()}</style>"
         st.markdown(css, unsafe_allow_html=True)
 
 
+#carga de documentos
+@st.cache_resource
+def load_pdf():
+    pdf_name = 'descripcion_tesis.pdf'
+
+    # excepcion si no encuentra el documento
+    if not os.path.exists(pdf_name):
+        st.error("no se encontro el archivo D:")
+        return None
+    
+    loader = PyPDFLoader(pdf_name)
+    docs = loader.load() 
+
+# dividir texto en fragmentos
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size = 1000,
+        chunk_overlap = 200
+    ) 
+    chunked_document = text_splitter.split_documents(docs)
+
+# Creacion de los embeddings
+    embeddings = OpenAIEmbeddings(
+        model="text-embedding-3-small",
+        api_key= st.secrets["openai_api_key"]
+    )
+
+# Creacion de la database vectorial
+    vectordb = Chroma.from_documents(
+        documents=chunked_document,
+        embedding=embeddings
+    )
+
+    return vectordb
+
+
 #Creacion de la funcion sesion_state
 def initialize_session_state():
     if "history" not in st.session_state:   
         st.session_state.history = []  
-    if "conversation" not in st.session_state:
-        chat_llm = ChatOpenAI(
-            temperature = 0,
-            openai_api_key = st.secrets["openai_api_key"],
-            model_name= "gpt-5-nano"
-        )
 
-        st.session_state.conversation = ConversationChain(
-            llm = chat_llm,
-            memory = ConversationSummaryMemory(llm = chat_llm),
-        )
+    if "conversation" not in st.session_state:
+        vectorstore = load_pdf()
+
+        if vectorstore:
+            chat_llm = ChatOpenAI(
+                temperature = 0,
+                openai_api_key = st.secrets["openai_api_key"],
+                model_name= "gpt-5-nano",
+                max_tokens = 500
+            )
+            #ahorro de memoria, esto hace que no recuerde toda la conversacion y solo los ultimos 6 mensajes para aminorar costos   
+            memory = ConversationBufferWindowMemory(
+                k = 3,
+                memory_key= "chat_history",
+                return_messages=True,
+                output_key='answer'
+            )
+
+            # Creacion de la cadena 
+            st.session_state.conversation = ConversationalRetrievalChain.from_llm(
+                llm = chat_llm,
+                retriever= vectorstore.as_retriever(),
+                memory = memory              
+            )
 
 #Funcion de callback para los mensajes
-def on_click_callback():
+def on_click_callback():       
     human_prompt = st.session_state.human_prompt
-    llm_response = st.session_state.conversation.run( 
-        human_prompt
-    )
+    
+    if st.session_state.conversation:
+        response = st.session_state.conversation.invoke({"question": human_prompt})
+        llm_response = response['answer']
+    else:
+        llm_response = "error no se pudo cargar :("
+
     st.session_state.history.append(
         Message("human", human_prompt)
     )
     st.session_state.history.append(
         Message("ai", llm_response)
     )
+
 #probar
 load_css()
 initialize_session_state()
-
-#########################################################################################################################
 
 # diseño de la interfaz
 
@@ -100,7 +135,7 @@ with st.sidebar:
     st.image(halcon, width= 350)
 
 # Titulos y texto explicativo
-st.set_page_config(page_title="UIEPCh", page_icon="🤖")
+
 st.markdown("<h1 style='text-align: center; font-size: 4em;'>Hola, Futuro halcón</h1>", unsafe_allow_html=True)
 st.text("Soy el asistente virtual oficial de la UICh, en que puedo ayudarte :D")
 
@@ -109,7 +144,7 @@ chat_placeholder = st.container()
 prompt_placeholder = st.form("chat-form")
 
 with chat_placeholder:
-    ##probar
+
     for chat in st.session_state.history:
         div = f"""
 <div class="chat-row 
@@ -144,4 +179,3 @@ with prompt_placeholder:
         on_click=on_click_callback, 
     )
 
-#probar
