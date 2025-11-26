@@ -81,7 +81,7 @@ def initialize_session_state():
                 temperature = 0,
                 openai_api_key = st.secrets["openai_api_key"],
                 model_name= "gpt-5-nano",
-                max_tokens = 500
+                max_tokens = 400
             )
             #ahorro de memoria, esto hace que no recuerde toda la conversacion y solo los ultimos 6 mensajes para aminorar costos   
             memory = ConversationBufferWindowMemory(
