@@ -5,3 +5,5 @@ inde.html
 entornoStreamlit/
 
 .streamlit/secrets.toml
+
+chroma_db/
