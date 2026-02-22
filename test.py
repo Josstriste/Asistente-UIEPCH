@@ -15,7 +15,6 @@ from langchain_classic.chains.conversation.memory import ConversationSummaryMemo
 # Configuración de la página
 st.set_page_config(page_title="UIEPCh", page_icon="🤖")
 
-print("hello")
 # Constantes
 # Nombre de la carpeta donde se guardará la base de datos vectorial
 PERSIST_DIRECTORY = "./chroma_db"
