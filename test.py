@@ -138,11 +138,16 @@ try:
         logouich = Image.open("images/v2Logo.png")
         st.sidebar.image(logouich, width=300)
         
-    st.sidebar.markdown("<h1 style='text-align: center; margin-top: 0; padding-top:0 '>Instrucciones:</h1>", unsafe_allow_html=True)
-    st.sidebar.markdown("<p style='text-align: center;'>Dentro del recuadro oscuro"
-        " escribe una pregunta con respecto a la universidad como cuales son los papeles necesarios"
-        " para inscribirse, precios de cuotas, etc.</p>", unsafe_allow_html=True)
-    st.sidebar.markdown("<p style='text-align: center; font-style: italic; font-size: 0.8em; padding-top: 20px; margin-bottom: 0; padding-bottom: 0;'>@UICh 2025 Copyright</p>", unsafe_allow_html=True)
+    st.sidebar.markdown("<h1 style='text-align: center; margin-top: 0; padding-top:0 '>Como usar:</h1>", unsafe_allow_html=True)
+    st.sidebar.markdown(
+        "Dentro del recuadro obscuro escribe alguna pregunta para pedir informacion sobre la universidad, por ejemplo: ¿Que carreras ofrece la universidad?"
+                        )
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("<h1 style='text-align: center; margin-top: 0; padding-top:0 '>Acerca de:</h1>", unsafe_allow_html=True)
+    st.sidebar.markdown(
+        "Bienvenido al asistente virtual oficial de la UICh, una herramienta diseñada para ayudar a futuros aspirantes a obtener informacion sobre la universidad."
+                        )
+    st.sidebar.markdown("Creado por [@UIChOficial](https://www.facebook.com/share/18BVyvgr4e/?mibextid=wwXIfr)")
     
     if os.path.exists("images/mascota sin fondo reflejo.png"):
         halcon = Image.open("images/mascota sin fondo reflejo.png")
@@ -151,8 +156,7 @@ except Exception as e:
     st.sidebar.warning("Imágenes no encontradas. Verifica las rutas.")
 
 # Interfaz Principal
-st.markdown("<h1 style='text-align: center; font-size: 4em;'>Hola, Futuro halcón</h1>", unsafe_allow_html=True)
-st.text("Soy el asistente virtual oficial de la UICh, en que puedo ayudarte :D")
+st.markdown("<h1 style='text-align: center; font-size: 4em; margin-bottom: 0; padding-bottom: 0;'>Hola, Futuro halcón</h1>", unsafe_allow_html=True)
 
 chat_placeholder = st.container()
 prompt_placeholder = st.form("chat-form")
@@ -165,7 +169,7 @@ with chat_placeholder:
         div = f"""
         <div class="chat-row {'' if chat.origin == 'ai' else 'row-reverse'}">
             <div class="chat-icon" style="font-size:32px">
-                {'🤖' if chat.origin == 'ai' else '👤'}
+                {'🦉' if chat.origin == 'ai' else '👨🏻‍💻'}
             </div>
             <div class="chat-bubble {'ai-bubble' if chat.origin == 'ai' else 'human-bubble'}">
                 &#8203;{chat.message}
