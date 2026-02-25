@@ -129,70 +129,68 @@ def on_click_callback():
         )
 
 # Ejecución Principal
-load_css()
-initialize_session_state()
+
 
 # Diseño del Sidebar
-try:
-    if os.path.exists("images/v2Logo.png"):
-        logouich = Image.open("images/v2Logo.png")
-        st.sidebar.image(logouich, width=300)
-        
-    st.sidebar.markdown("<h1 style='text-align: center; margin-top: 0; padding-top:0 '>Como usar:</h1>", unsafe_allow_html=True)
-    st.sidebar.markdown(
-        "Dentro del recuadro obscuro escribe alguna pregunta para pedir informacion sobre la universidad, por ejemplo: ¿Que carreras ofrece la universidad?"
-                        )
-    st.sidebar.markdown("---")
-    st.sidebar.markdown("<h1 style='text-align: center; margin-top: 0; padding-top:0 '>Acerca de:</h1>", unsafe_allow_html=True)
-    st.sidebar.markdown(
-        "Bienvenido al asistente virtual oficial de la UICh, una herramienta diseñada para ayudar a futuros aspirantes a obtener informacion sobre la universidad."
-                        )
-    st.sidebar.markdown("Creado por [@UIChOficial](https://www.facebook.com/share/18BVyvgr4e/?mibextid=wwXIfr)")
-    
-    if os.path.exists("images/mascota sin fondo reflejo.png"):
-        halcon = Image.open("images/mascota sin fondo reflejo.png")
-        st.sidebar.image(halcon, width=350)
-except Exception as e:
-    st.sidebar.warning("Imágenes no encontradas. Verifica las rutas.")
 
-# Interfaz Principal
-st.markdown("<h1 style='text-align: center; font-size: 4em; margin-bottom: 0; padding-bottom: 0;'>Hola, Futuro halcón</h1>", unsafe_allow_html=True)
 
-chat_placeholder = st.container()
-prompt_placeholder = st.form("chat-form")
+# Interfaz Principal TEST
+def Chatbot():
+    load_css()
+    initialize_session_state()
+    st.markdown("<h1 style='text-align: center; font-size: 4em; margin-bottom: 0; padding-bottom: 0;'>Hola, Futuro halcón</h1>", unsafe_allow_html=True)
 
-with chat_placeholder:
-    for chat in st.session_state.history:
-        
-        icon_path = 'app/static/halcon (1).png' if chat.origin == 'ai' else 'perfil.png'
-        
-        div = f"""
-        <div class="chat-row {'' if chat.origin == 'ai' else 'row-reverse'}">
-            <div class="chat-icon" style="font-size:32px">
-                {'🦉' if chat.origin == 'ai' else '👨🏻‍💻'}
+    chat_placeholder = st.container()
+    prompt_placeholder = st.form("chat-form")
+
+    with chat_placeholder:
+        for chat in st.session_state.history:
+            
+            div = f"""
+            <div class="chat-row {'' if chat.origin == 'ai' else 'row-reverse'}">
+                <div class="chat-icon" style="font-size:32px">
+                    {'🦅' if chat.origin == 'ai' else '👨🏻‍💻'}
+                </div>
+                <div class="chat-bubble {'ai-bubble' if chat.origin == 'ai' else 'human-bubble'}">
+                    &#8203;{chat.message}
+                </div>
             </div>
-            <div class="chat-bubble {'ai-bubble' if chat.origin == 'ai' else 'human-bubble'}">
-                &#8203;{chat.message}
-            </div>
-        </div>
-        """
-        st.markdown(div, unsafe_allow_html=True)
+            """
+            st.markdown(div, unsafe_allow_html=True)
 
-    for _ in range(3):
-        st.markdown("")
+        for _ in range(3):
+            st.markdown("")
 
-with prompt_placeholder:
-    st.markdown("**Chat** - _presiona Enter para enviar_")
-    cols = st.columns((6, 1))
-    cols[0].text_input(
-        "Chat",
-        placeholder="Pregunta a UIChito",
-        label_visibility="collapsed",
-        key="human_prompt",
-    )
+    with prompt_placeholder:
+        st.markdown("**Chat** - _presiona Enter para enviar_")
+        cols = st.columns((6, 1))
+        cols[0].text_input(
+            "Chat",
+            placeholder="Pregunta a UIChito",
+            label_visibility="collapsed",
+            key="human_prompt",
+        )
 
-    cols[1].form_submit_button(
-        "Enviar",
-        type="primary",
-        on_click=on_click_callback,
-    )
+        cols[1].form_submit_button(
+            "Enviar",
+            type="primary",
+            on_click=on_click_callback,
+        )
+
+def Info():
+    st.markdown("<h1 style='text-align: center; font-size: 4em; margin-bottom: 0; padding-bottom: 0;'>Acerca de:</h1>", unsafe_allow_html=True)
+    st.markdown(
+        "<p style='text-align: justify; font-size: 1.75em; margin-top: 3rem; padding-bottom: 0;'>Somos una Institución de Educación Superior que forma profesionales de calidad, con actitud científica, creativa, solidaria, con espíritu emprendedor e innovador, sensibles a la diversidad cultural y comprometidos con el respeto a la valoración de la diferentes culturas formando profesionistas acorde a las demandas de la sociedad y desarrollando actividades académicas, de investigación, difusión y extensión universitaria, para beneficiar a la Región, el Estado y el País, con la razón de mejorar el desarrollo humano en los nuevos retos de nuestra era.</p>", unsafe_allow_html=True
+        )
+
+logo = "images/logo_.png"
+st.logo(logo, link="https://uich.edu.mx/", size="large")
+
+pg = st.navigation(
+    {
+        "Home": [Chatbot],
+        "Universidad": [Info]
+    },
+)
+
+pg.run()
