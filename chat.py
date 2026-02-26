@@ -129,10 +129,6 @@ def on_click_callback():
 
 # Ejecución Principal
 
-
-# Diseño del Sidebar
-
-
 # Interfaz Principal
 load_css()
 initialize_session_state()
