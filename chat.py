@@ -153,7 +153,7 @@ with chat_placeholder:
         st.markdown("")
 
 with prompt_placeholder:
-    st.markdown("**Chat** - _presiona Enter para enviar_")
+    st.markdown("_Presiona Enter para enviar_")
     cols = st.columns((6, 1))
     cols[0].text_input(
         "Chat",

@@ -7,7 +7,7 @@ st.logo("images/logoUich.png")
 st.html("""
   <style>
     img[data-testid="stSidebarLogo"] {
-        width: 7.75rem;
+        width: 7rem;
         height: 3.2rem;
         margin-top: 1.5em;
         max-height: none !important;
