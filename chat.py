@@ -35,10 +35,6 @@ def load_css():
 # Función para preparar la Base de Datos Vectorial para el sistema RAG
 @st.cache_resource
 def get_vectorstore():
-    """
-    Carga el PDF, lo convierte en embeddings y lo guarda en disco (Chroma).
-    Si ya existe en disco, lo carga directamente para ahorrar dinero y tiempo.
-    """
     
     # Definir los embeddings (usamos OpenAI)
     embedding_function = OpenAIEmbeddings(openai_api_key=st.secrets["openai_api_key"])
@@ -128,11 +124,13 @@ def on_click_callback():
         )
 
 # Ejecución Principal
-
-# Interfaz Principal
 load_css()
 initialize_session_state()
+
+# Interfaz Principal
+
 st.markdown("<h1 style='text-align: center; font-size: 4em; margin-bottom: 0; padding-bottom: 0;'>Hola, Futuro halcón</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; font-size: 1.3em; margin-bottom: 0; padding-bottom: 0;'>¿En qué puedo ayudarte hoy?</h1>", unsafe_allow_html=True)
 
 chat_placeholder = st.container()
 prompt_placeholder = st.form("chat-form")
