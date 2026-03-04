@@ -19,6 +19,7 @@ st.html("""
 page_chat = st.Page("chat.py", title="Asistente Virtual", icon="💬", default=True)
 page_info = st.Page("info.py", title="Acerca de UICh", icon="🏫")
 
+
 pg = st.navigation(
     [page_chat,page_info]
 )

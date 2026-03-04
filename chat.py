@@ -130,10 +130,10 @@ initialize_session_state()
 # Interfaz Principal
 
 st.markdown("<h1 style='text-align: center; font-size: 4em; margin-bottom: 0; padding-bottom: 0;'>Hola, Futuro halcón</h1>", unsafe_allow_html=True)
-st.markdown("<h1 style='text-align: center; font-size: 1.3em; margin-bottom: 0; padding-bottom: 0;'>¿En qué puedo ayudarte hoy?</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; font-size: 1.3em; margin-bottom: 0; padding-bottom: 1rem;'>¿En qué puedo ayudarte hoy?</h1>", unsafe_allow_html=True)
 
 chat_placeholder = st.container()
-prompt_placeholder = st.form("chat-form")
+prompt_placeholder = st.form("chat-form", clear_on_submit=True)
 
 with chat_placeholder:
     for chat in st.session_state.history:
@@ -166,4 +166,9 @@ with prompt_placeholder:
         "Enviar",
         type="primary",
         on_click=on_click_callback,
+    )
+
+st.markdown(
+    "<p <h1 style='text-align: center; font-size: 0.7em; margin-top: 2rem; padding-bottom: 0;'>Copyright © 2026 | Universidad Interserrana del Estado de Puebla Chilchotla | Todos los Derechos Reservados.</p>",
+    unsafe_allow_html=True
     )
