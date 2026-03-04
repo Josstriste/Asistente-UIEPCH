@@ -129,8 +129,8 @@ initialize_session_state()
 
 # Interfaz Principal
 
-st.markdown("<h1 style='text-align: center; font-size: 4em; margin-bottom: 0; padding-bottom: 0;'>Hola, Futuro halcón</h1>", unsafe_allow_html=True)
-st.markdown("<h1 style='text-align: center; font-size: 1.3em; margin-bottom: 0; padding-bottom: 1rem;'>¿En qué puedo ayudarte hoy?</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: left; font-size: 4em; margin-bottom: 0; padding-bottom: 0;'>Hola, Futuro halcón 📚</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: left; font-size: 1.3em; margin-bottom: 0; padding-bottom: 1rem;'>¿En qué puedo ayudarte hoy?</h1>", unsafe_allow_html=True)
 
 chat_placeholder = st.container()
 prompt_placeholder = st.form("chat-form", clear_on_submit=True)
