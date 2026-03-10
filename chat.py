@@ -108,12 +108,12 @@ def initialize_session_state():
 def on_click_callback():
     human_prompt = st.session_state.human_prompt
     
-    if st.session_state.conversation:
+    if st.session_state.conversation and human_prompt:
         # Ejecutar la cadena con la pregunta del usuario
         # Nota: ConversationalRetrievalChain espera un diccionario con "question"
-        response = st.session_state.conversation.invoke({"question": human_prompt})
-        
-        llm_response = response['answer']
+        with st.spinner("🦅 UIChito esta buscando en los documentos..."):
+            response = st.session_state.conversation.invoke({"question": human_prompt})
+            llm_response = response['answer']
 
         st.session_state.history.append(
             Message("human", human_prompt)
@@ -123,14 +123,27 @@ def on_click_callback():
             Message("ai", llm_response)
         )
 
+#botones de sugerencia
+def enviar_sugerencia(pregunta):
+    """Procesa la pregunta cuando el usuario hace clic en un botón de sugerencia"""
+    if st.session_state.conversation:
+        # Ejecutar la cadena con la pregunta del botón
+        with st.spinner("🦅 UIChito esta buscando en los documentos..."):
+            response = st.session_state.conversation.invoke({"question": pregunta})
+            llm_response = response['answer']
+
+        # Guardar en el historial
+        st.session_state.history.append(Message("human", pregunta))
+        st.session_state.history.append(Message("ai", llm_response))
+
 # Ejecución Principal
 load_css()
 initialize_session_state()
 
 # Interfaz Principal
 
-st.markdown("<h1 style='text-align: left; font-size: 4em; margin-bottom: 0; padding-bottom: 0;'>Hola, Futuro halcón 📚</h1>", unsafe_allow_html=True)
-st.markdown("<h1 style='text-align: left; font-size: 1.3em; margin-bottom: 0; padding-bottom: 1rem;'>¿En qué puedo ayudarte hoy?</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: left; font-size: 4em; margin-bottom: 0; padding-bottom: 0;'>Hola, Futuro halcón</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: left; font-size: 1.3em; margin-bottom: 0; padding-bottom: 0.3rem;'>¿En qué puedo ayudarte hoy?</h1>", unsafe_allow_html=True)
 
 chat_placeholder = st.container()
 prompt_placeholder = st.form("chat-form", clear_on_submit=True)
@@ -152,6 +165,29 @@ with chat_placeholder:
     for _ in range(3):
         st.markdown("")
 
+#Construccion de botones
+st.markdown("<p style='text-align: center; font-size: 0.9em; color: gray; margin-bottom: 1rem;'>💡 Puedes preguntarme cosas como:</p>", unsafe_allow_html=True)
+
+# Creamos 3 columnas para los 3 botones
+col_sug1, col_sug2, col_sug3 = st.columns(3)
+
+# Botón 1
+with col_sug1:
+    if st.button("¿Cuáles son los papeles que necesito para inscribirme?", use_container_width=True):
+        enviar_sugerencia("¿Cuáles son los papeles que necesito para inscribirme?")
+
+# Botón 2
+with col_sug2:
+    if st.button("¿Qué carreras ofrece la universidad?", use_container_width=True):
+        enviar_sugerencia("¿Qué carreras ofrece la universidad?")
+
+# Botón 3
+with col_sug3:
+    if st.button("¿Cuál es el proceso de admisión?", use_container_width=True):
+        enviar_sugerencia("¿Cuál es el proceso de admisión?")
+
+st.markdown("<br>", unsafe_allow_html=True) # Un pequeño salto de línea para separar los botones del formulario
+
 with prompt_placeholder:
     st.markdown("_Presiona Enter para enviar_")
     cols = st.columns((6, 1))
@@ -169,6 +205,6 @@ with prompt_placeholder:
     )
 
 st.markdown(
-    "<p <h1 style='text-align: center; font-size: 0.7em; margin-top: 2rem; padding-bottom: 0;'>Copyright © 2026 | Universidad Interserrana del Estado de Puebla Chilchotla | Todos los Derechos Reservados.</p>",
+    "<p style= 'position: fixed; bottom: 0; width: 100%;'>Copyright © 2026 | Universidad Interserrana del Estado de Puebla Chilchotla | Todos los Derechos Reservados.</p>",
     unsafe_allow_html=True
     )
