@@ -136,6 +136,8 @@ def enviar_sugerencia(pregunta):
         st.session_state.history.append(Message("human", pregunta))
         st.session_state.history.append(Message("ai", llm_response))
 
+        st.rerun()
+
 # Ejecución Principal
 load_css()
 initialize_session_state()
