@@ -19,9 +19,9 @@
 }
 
 .ai-bubble {
-    background: linear-gradient(135deg, #dbae85 5%, #bf8f63 95%);
+    background: #58212d;
     border-radius: 10px;
-    color: black;
+    color: rgb(229, 229, 229);
 }
 
 .human-bubble {
