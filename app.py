@@ -25,3 +25,23 @@ pg = st.navigation(
 )
 
 pg.run()
+
+footer_html = """
+<style>
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 5px;
+}
+</style>
+<div class="footer">
+    <p style= 'font-size: 0.8rem; padding-top: 7px;'>Copyright © 2026 | UICh | Todos los Derechos Reservados</p>
+</div>
+"""
+
+st.markdown(footer_html, unsafe_allow_html=True)

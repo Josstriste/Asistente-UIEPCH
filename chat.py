@@ -205,8 +205,3 @@ with prompt_placeholder:
         type="primary",
         on_click=on_click_callback,
     )
-
-st.markdown(
-    "<p style= 'position: fixed; bottom: 0; width: 100%;'>Copyright © 2026 | Universidad Interserrana del Estado de Puebla Chilchotla | Todos los Derechos Reservados.</p>",
-    unsafe_allow_html=True
-    )
