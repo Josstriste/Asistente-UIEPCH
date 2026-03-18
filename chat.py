@@ -18,7 +18,7 @@ from langchain_classic.chains.conversation.memory import ConversationSummaryMemo
 # Nombre de la carpeta donde se guardará la base de datos vectorial
 PERSIST_DIRECTORY = "./chroma_db"
 # Nombre del archivo pdf
-PDF_PATH = "FichaUich.pdf"
+PDF_PATH = "fichauich.pdf"
 
 @dataclass
 class Message:
