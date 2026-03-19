@@ -11,8 +11,6 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_classic.chains.conversational_retrieval.base import ConversationalRetrievalChain
 from langchain_classic.chains.conversation.memory import ConversationSummaryMemory
 
-# Configuración de la página
-
 
 # Constantes
 # Nombre de la carpeta donde se guardará la base de datos vectorial
