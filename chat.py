@@ -9,7 +9,8 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_classic.chains.conversational_retrieval.base import ConversationalRetrievalChain
-from langchain_classic.chains.conversation.memory import ConversationSummaryMemory
+from langchain_classic.memory import ConversationBufferWindowMemory
+#from langchain_classic.chains.conversation.memory import ConversationSummaryMemory
 
 
 # Constantes
@@ -24,11 +25,12 @@ class Message:
     origin: Literal["human", "ai"]
     message: str
 
+@st.cache_data
 def load_css():
     if os.path.exists("static/styles.css"):
         with open("static/styles.css", "r") as f:
-            css = f"<style>{f.read()}</style>"
-            st.markdown(css, unsafe_allow_html=True)
+            return f"<style>{f.read()}</style>"
+    return ""
 
 # Función para preparar la Base de Datos Vectorial para el sistema RAG
 @st.cache_resource
@@ -88,8 +90,8 @@ def initialize_session_state():
             )
 
             # Configurar la memoria (resumen de la conversación)
-            memory = ConversationSummaryMemory(
-                llm=chat_llm, 
+            memory = ConversationBufferWindowMemory(
+                k=4,
                 memory_key="chat_history", 
                 return_messages=True,
                 output_key="answer"
@@ -137,7 +139,7 @@ def enviar_sugerencia(pregunta):
         st.rerun()
 
 # Ejecución Principal
-load_css()
+st.markdown(load_css(), unsafe_allow_html=True)
 initialize_session_state()
 
 # Interfaz Principal

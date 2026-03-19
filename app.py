@@ -1,8 +1,17 @@
 import streamlit as st
+import os
 
 st.set_page_config(page_title="UIEPCh", page_icon="🤖", layout="centered")
 
 st.logo("images/logoUich.png")
+
+st.html("""
+  <style>
+    .stAppHeader {
+        display: none !important;
+    }
+  </style>
+""")
 
 st.html("""
   <style>

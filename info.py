@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.markdown(
-    "<h1 style='text-align: center; font-size: 4em; margin-bottom: 0.2em; padding-bottom: 0; color: #7A1C30;'>Acerca de</h1>", unsafe_allow_html=True
+    "<h1 style='text-align: center; font-size: 3.5em; margin-bottom: 0.2em; padding-bottom: 0; color: #7A1C30;'>Acerca de</h1>", unsafe_allow_html=True
     )
 
 st.image("images/fachadaUICh.png", )
