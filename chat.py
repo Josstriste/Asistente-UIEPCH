@@ -37,7 +37,10 @@ def load_css():
 def get_vectorstore():
     
     # Definir los embeddings (usamos OpenAI)
-    embedding_function = OpenAIEmbeddings(openai_api_key=st.secrets["openai_api_key"])
+    embedding_function = OpenAIEmbeddings(
+        model= "text-embedding-3-small",
+        openai_api_key=st.secrets["openai_api_key"]
+    )
 
     # Verificar si ya existe la base de datos persistente
     if os.path.exists(PERSIST_DIRECTORY) and os.listdir(PERSIST_DIRECTORY):
@@ -55,8 +58,8 @@ def get_vectorstore():
         
         # 2. Dividir el texto (Split)
         text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=1000,  # Tamaño del fragmento
-            chunk_overlap=200 # Solapamiento para mantener contexto
+            chunk_size=600,  # Tamaño del fragmento
+            chunk_overlap=100 # Solapamiento para mantener contexto
         )
         chunks = text_splitter.split_documents(documents)
         
