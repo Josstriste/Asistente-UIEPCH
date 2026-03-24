@@ -7,7 +7,7 @@ st.logo("images/logoUich.png")
 
 st.html("""
   <style>
-    .stAppHeader {
+    #MainMenu {
         display: none !important;
     }
   </style>
