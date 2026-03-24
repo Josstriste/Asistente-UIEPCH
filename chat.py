@@ -10,8 +10,15 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_classic.chains.conversational_retrieval.base import ConversationalRetrievalChain
 from langchain_classic.memory import ConversationBufferWindowMemory
-#from langchain_classic.chains.conversation.memory import ConversationSummaryMemory
 
+#get api
+def get_api():
+    key = os.environ.get("OPENAI_API_KEY")
+    if not key:
+        key = st.secrets["openai_api_key"]
+    return key
+
+return_key = get_api()
 
 # Constantes
 # Nombre de la carpeta donde se guardará la base de datos vectorial
@@ -38,8 +45,7 @@ def get_vectorstore():
     
     # Definir los embeddings (usamos OpenAI)
     embedding_function = OpenAIEmbeddings(
-        model= "text-embedding-3-small",
-        openai_api_key=st.secrets["openai_api_key"]
+        openai_api_key= return_key
     )
 
     # Verificar si ya existe la base de datos persistente
@@ -87,7 +93,7 @@ def initialize_session_state():
             # Configurar el LLM
             chat_llm = ChatOpenAI(
                 temperature=0,
-                openai_api_key=st.secrets["openai_api_key"],
+                openai_api_key= return_key,
                 model_name="gpt-4o-mini", 
                 max_tokens=400
             )
@@ -114,7 +120,7 @@ def on_click_callback():
     if st.session_state.conversation and human_prompt:
         # Ejecutar la cadena con la pregunta del usuario
         # Nota: ConversationalRetrievalChain espera un diccionario con "question"
-        with st.spinner("🦅 UIChito esta buscando en los documentos..."):
+        with st.spinner("🦅 UIChito esta pensando..."):
             response = st.session_state.conversation.invoke({"question": human_prompt})
             llm_response = response['answer']
 
@@ -131,7 +137,7 @@ def enviar_sugerencia(pregunta):
     """Procesa la pregunta cuando el usuario hace clic en un botón de sugerencia"""
     if st.session_state.conversation:
         # Ejecutar la cadena con la pregunta del botón
-        with st.spinner("🦅 UIChito esta buscando en los documentos..."):
+        with st.spinner("🦅 UIChito esta pensando..."):
             response = st.session_state.conversation.invoke({"question": pregunta})
             llm_response = response['answer']
 
