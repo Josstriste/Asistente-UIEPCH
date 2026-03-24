@@ -24,7 +24,7 @@ return_key = get_api()
 # Nombre de la carpeta donde se guardará la base de datos vectorial
 PERSIST_DIRECTORY = "./chroma_db"
 # Nombre del archivo pdf
-PDF_PATH = "fichauich.pdf"
+PDF_PATH = "FichaUich.pdf"
 
 @dataclass
 class Message:
